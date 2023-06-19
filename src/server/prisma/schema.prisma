@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String    @id @default(uuid()) @db.VarChar(255)
+  name       String    @default("visitor") @db.VarChar(255)
+  email      String    @unique @db.VarChar(100)
+  phone      BigInt?
+  avatar     String?   @db.VarChar(100)
+  password   String    @db.VarChar(100)
+  status     Int       @default(1)
+  role       Int       @default(1)
+  verify_key String?   @db.VarChar(255)
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+  deleted_at DateTime?
+  messages   Message[]
+}
+
+model EmailVerifyQueue {
+  id         Int      @id @default(autoincrement())
+  email      String   @db.VarChar(100)
+  vcode      Int
+  errmsg     String?  @db.VarChar(255)
+  created_at DateTime @default(now())
+}
+
+model fx_coop {
+  CoopID        String          @id @default(cuid()) @db.VarChar(50)
+  Name          String          @default("") @db.VarChar(50)
+  CoopType      String          @default("") @db.VarChar(50)
+  WorkDeadline  DateTime?
+  WorkStartTime DateTime?
+  WorkNode      String          @default("") @db.VarChar(50)
+  CreateDt      DateTime?
+  CreateUserID  String          @default("") @db.VarChar(50)
+  LastUpdateDt  DateTime?
+  CurBAID       String          @default("") @db.VarChar(50)
+  PrevBAID      String?         @db.VarChar(50)
+  BackBAID      String?         @db.VarChar(50)
+  Descript      String          @default("") @db.VarChar(255)
+  CoopStatus    String          @default("") @db.VarChar(50)
+  LastMsg       String?         @db.Text()
+  CoopUser      fx_coopuser[]
+  CoopMsg       fx_coopmsg[]
+  CoopRecord    fx_cooprecord[]
+}
+
+model fx_coopmsg {
+  MsgID      String    @id @default(cuid()) @db.VarChar(255)
+  CoopID     String    @db.VarChar(255)
+  Sender     String?   @db.VarChar(255)
+  MsgType    String    @default("") @db.VarChar(255)
+  MsgTopic   String    @default("") @db.VarChar(255)
+  MsgTime    DateTime?
+  MsgContent String?   @db.Text()
+  CoopInfo   fx_coop?  @relation(fields: [CoopID], references: [CoopID])
+}
+
+model fx_cooprecord {
+  ID            String    @id @default(cuid()) @db.VarChar(50)
+  BAID          String    @db.VarChar(50)
+  PrevBAID      String    @default("") @db.VarChar(50)
+  BackBAID      String?   @db.VarChar(50)
+  CoopID        String?   @db.VarChar(50)
+  WorkNode      String    @default("") @db.VarChar(255)
+  WorkDeadline  DateTime?
+  WorkStartTime DateTime?
+  Descript      String?   @db.Text()
+  UserIDs       String?   @db.VarChar(255)
+  UserRoles     String    @default("") @db.VarChar(255)
+  Remarks       String?   @db.Text()
+  Sender        String?   @db.VarChar(50)
+  SnapTime      DateTime?
+  SnapAction    String?   @db.VarChar(255)
+  CoopInfo      fx_coop?  @relation(fields: [CoopID], references: [CoopID])
+}
+
+model fx_coopuser {
+  ID        String   @id @default(cuid()) @db.VarChar(50)
+  CoopID    String   @db.VarChar(255)
+  UserID    String   @default("") @db.VarChar(255)
+  WorkRoles String   @default("") @db.VarChar(255)
+  CoopInfo  fx_coop? @relation(fields: [CoopID], references: [CoopID])
+  Remark    String?  @db.Text()
+  ReadState Int      @default(0)
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  roomId    String
+  content   String   @db.Text()
+  type      String   @default("text")
+  size      String   @default("")
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+//  FOREIGN KEY ("authorId") REFERENCES "User"(id)

@@ -1,0 +1,37 @@
+{
+  "id": "3006570",
+  "name": "zorq",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6324396",
+      "name": "login",
+      "font_class": "login",
+      "unicode": "e6e2",
+      "unicode_decimal": 59106
+    },
+    {
+      "icon_id": "10972287",
+      "name": "diagonal-arrow-left-up-outline",
+      "font_class": "diagonal-arrow-left-up-outline",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "6822916",
+      "name": "wechat",
+      "font_class": "wechat",
+      "unicode": "e6ca",
+      "unicode_decimal": 59082
+    },
+    {
+      "icon_id": "9186714",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    }
+  ]
+}

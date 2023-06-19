@@ -1,0 +1,179 @@
+$login-card-width: 20%;
+$login-card-height: 55%;
+
+@property --bg-color1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #c2edff;
+}
+
+@property --bg-color2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #81a7f6e6;
+}
+
+@property --bg-color3 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #422d4f;
+}
+
+@property --rotate {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: '132deg';
+}
+
+@include b(login) {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    var(--bg-color1) 0%,
+    var(--bg-color2) 58%,
+    var(--bg-color3) 100%
+  );
+  transition: 0.2s --bg-color1, 0.4s --bg-color2, 0.6s --bg-color3;
+
+  &-back {
+    --bg-color1: #555;
+    --bg-color2: #222;
+    --bg-color3: #000;
+  }
+
+  &-main-content {
+    width: $login-card-width;
+    min-width: 360px;
+    height: 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &-identity-wrapper {
+    z-index: 100;
+
+    & > h6 {
+      font-size: 24px;
+      margin-bottom: 20px;
+
+      span {
+        padding: 0 20px;
+        color: #ecf5ff;
+      }
+    }
+
+    #identity-checkbox {
+      display: none;
+
+      & + label {
+        position: relative;
+        display: block;
+        text-align: center;
+        width: 80px;
+        height: 24px;
+        border-radius: 12px;
+        padding: 0;
+        margin: 10px auto;
+        cursor: pointer;
+        background-color: #ecf5ff;
+        transition: all 0.5s ease;
+
+        &:before {
+          position: absolute;
+          display: block;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          color: #ecf5ff;
+          background-color: #102770;
+          font-family: iconfont;
+          content: '\e6af';
+          z-index: 20;
+          top: -10px;
+          left: -10px;
+          line-height: 40px;
+          text-align: center;
+          font-size: 28px;
+          transition: all 0.5s ease;
+        }
+      }
+
+      &:checked {
+        & + label {
+          background-color: #fff;
+          filter: drop-shadow(0 0 10px #fff);
+
+          &:before {
+            transform: translateX(54px) rotate(-270deg);
+          }
+        }
+      }
+    }
+  }
+
+  &-card-3d-wrapper {
+    width: 100%;
+    height: 55%;
+    min-height: 600px;
+    margin-top: 30px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.6s ease-out;
+
+    &.loginCardTransfer {
+      transform: rotateY(180deg);
+
+      @keyframes spin {
+        0% {
+          --rotate: 0deg;
+        }
+
+        100% {
+          --rotate: 360deg;
+        }
+      }
+
+      .before-box {
+        content: '';
+        border-radius: 20px;
+        width: 104%;
+        height: 102%;
+        background: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+        filter: drop-shadow(0 0 1px #fff);
+        position: absolute;
+        z-index: -1;
+        top: -1%;
+        left: -2%;
+        animation: spin 2.5s linear infinite;
+      }
+
+      .after-box {
+        position: absolute;
+        content: '';
+        top: $login-card-width / 6;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        transform: scale(0.92);
+        filter: blur($login-card-height / 8);
+        background: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+        transition: opacity 0.8s;
+        animation: spin 2.5s linear infinite;
+      }
+    }
+  }
+}

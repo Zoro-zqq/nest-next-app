@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@components/*": ["./src/pages/components/*"],
+      "@utils/*": ["./src/pages/utils/*"],
+      "@styles/*": ["./src/pages/styles/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "./src/client/**/*.ts", "./src/server/**/*.ts"],
+  "exclude": ["node_modules"] // 添加别名 , 在项目中即可使用 @components
+}

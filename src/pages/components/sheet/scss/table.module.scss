@@ -1,0 +1,22 @@
+.hot-tb-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.hot-tb-wrapper:hover {
+  overflow-y: overlay;
+}
+
+.hot-tb-wrapper::-webkit-scrollbar {
+  width: 1px;
+  height: 2px;
+  cursor: pointer;
+}
+.hot-tb-wrapper::-webkit-scrollbar-thumb {
+  background: #252525;
+  cursor: pointer;
+  border-radius: 1px;
+}
+.hot-tb-wrapper::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}

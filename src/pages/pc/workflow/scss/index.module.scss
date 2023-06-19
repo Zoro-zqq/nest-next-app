@@ -1,0 +1,39 @@
+.coop-wrapper {
+  height: 100vh;
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+  border-bottom: 1px solid #bbbbbb;
+
+  .coop-left__row {
+    color: #000 !important;
+    padding: 30px 0 !important;
+    align-items: center;
+    border-bottom: 1px solid #bbbbbb;
+  }
+
+  .coop-right {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+}
+
+.avatar {
+  position: absolute;
+  right: 50px;
+  top: -30px;
+  transform: scale(0.8);
+}
+
+.to-do {
+  background-color: rgb(240, 242, 245);
+  height: 80vh;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 15px 0;
+  flex-direction: column;
+  overflow-y: scroll;
+}

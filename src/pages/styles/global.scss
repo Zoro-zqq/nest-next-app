@@ -1,0 +1,50 @@
+$namespace: 'z' !default;
+$block-sel: '-' !default;
+$elem-sel: '__' !default;
+$mod-sel: '--' !default;
+
+@mixin b($block) {
+  $B: #{$namespace + $block-sel + $block};
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($elem) {
+  $seletor: &;
+
+  @at-root {
+    #{$seletor + $elem-sel + $elem} {
+      @content;
+    }
+  }
+}
+
+@mixin m($mod) {
+  $seletor: &;
+
+  @at-root {
+    #{$seletor + $mod-sel + $mod} {
+      @content;
+    }
+  }
+}
+
+@each $width-number in (10, 20, 30, 40, 50) {
+  .width-#{$width-number} {
+    width: #{$width-number}px;
+  }
+}
+@each $property in (margin, padding) {
+  @each $size in (10, 20, 30, 40, 50) {
+    .#{$property}-#{$size} {
+      #{$property}: #{$size}px;
+    }
+    @each $direction in (top, left, right, bottom) {
+      .#{$property}-#{$direction}-#{$size} {
+        #{$property}-#{$direction}: #{$size}px;
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+@include b(home) {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  @include e(box) {
+    transform: scale(0);
+    background-color: #e7dac5;
+    width: 50vw;
+    height: 50vw;
+    position: absolute;
+    top: -16vw;
+    left: -10vw;
+    z-index: 9999;
+    -webkit-clip-path: polygon(
+      92.32051% 40%,
+      93.79385% 43.1596%,
+      94.69616% 46.52704%,
+      95% 50%,
+      94.69616% 53.47296%,
+      93.79385% 56.8404%,
+      92.32051% 60%,
+      79.82051% 81.65064%,
+      77.82089% 84.50639%,
+      75.35575% 86.97152%,
+      72.5% 88.97114%,
+      69.3404% 90.44449%,
+      65.97296% 91.34679%,
+      62.5% 91.65064%,
+      37.5% 91.65064%,
+      34.02704% 91.34679%,
+      30.6596% 90.44449%,
+      27.5% 88.97114%,
+      24.64425% 86.97152%,
+      22.17911% 84.50639%,
+      20.17949% 81.65064%,
+      7.67949% 60%,
+      6.20615% 56.8404%,
+      5.30384% 53.47296%,
+      5% 50%,
+      5.30384% 46.52704%,
+      6.20615% 43.1596%,
+      7.67949% 40%,
+      20.17949% 18.34936%,
+      22.17911% 15.49361%,
+      24.64425% 13.02848%,
+      27.5% 11.02886%,
+      30.6596% 9.55551%,
+      34.02704% 8.65321%,
+      37.5% 8.34936%,
+      62.5% 8.34936%,
+      65.97296% 8.65321%,
+      69.3404% 9.55551%,
+      72.5% 11.02886%,
+      75.35575% 13.02848%,
+      77.82089% 15.49361%,
+      79.82051% 18.34936%
+    );
+  }
+
+  @include e(title) {
+    position: fixed;
+    top: 10vw;
+    left: 8vw;
+    width: 18vw;
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 60px;
+    color: #fff;
+    z-index: 99999;
+    letter-spacing: 2px;
+  }
+
+  @include e(row) {
+    position: absolute;
+    top: 160px;
+    right: 10px;
+    height: 90px;
+    width: 100vw;
+    background-image: linear-gradient(30deg, #c850c0, #e7dac5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    font-weight: bold;
+    padding-right: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
+  @include e(technology) {
+    bottom: 3%;
+    right: 60px;
+    top: auto;
+    transform: translate3d(20%, 270%, 0) rotate3d(32, 24, 30, -70deg);
+  }
+
+  @include e(tips) {
+    display: inline-block;
+    position: absolute;
+    left: 22%;
+    bottom: 12%;
+    transform: translate3d(-50%, -50%, 0) rotate3d(1, 0, 0, 55deg) rotate3d(0, 0, 1, 45deg);
+    font-weight: 800;
+    font-size: 40px;
+    width: 320px;
+    color: inherit;
+  }
+
+  @include e(avater) {
+    position: fixed;
+    right: 60px;
+    top: 50px;
+    z-index: 9999;
+    width: 240px;
+  }
+}

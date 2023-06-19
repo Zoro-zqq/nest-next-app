@@ -1,0 +1,21 @@
+.from-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  word-break: break-all;
+  border: none;
+  width: fit-content;
+  height: fit-content;
+  .form-td {
+    font-size: 11px;
+    padding: 0;
+  }
+  .table-td {
+    vertical-align: top;
+    border: 1px #000 solid;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+  }
+}
