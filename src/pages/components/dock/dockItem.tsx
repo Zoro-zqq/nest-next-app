@@ -13,6 +13,8 @@ interface DockItemProps {
   mouseX: MotionValue
 }
 
+let channel
+
 const DockItem = ({ app, mouseX }: DockItemProps) => {
   const { openApps, minimizeApps } = useSelector((state: AppState) => state.app)
   const [isOpen, setIsOpen] = useState(false)
@@ -26,15 +28,24 @@ const DockItem = ({ app, mouseX }: DockItemProps) => {
 
   const dockItemClick = () => {
     if (app.link) {
+      dispatch(
+        setOpenApp({
+          windowName: app.windowName,
+          type: 'open'
+        })
+      )
       //打开/关闭对应路由标签页（窗口） 通知这边更新 ： 更新setOpenApp
-      new BroadcastChannel(app.windowName).onmessage = e => {
-        console.log('BroadcastChannel:', e.data)
-        dispatch(
-          setOpenApp({
-            windowName: app.windowName,
-            type: 'refresh'
-          })
-        )
+      if (!channel) {
+        channel = new BroadcastChannel(app.windowName)
+        channel.onmessage = e => {
+          console.log('BroadcastChannel:', e.data)
+          dispatch(
+            setOpenApp({
+              windowName: app.windowName,
+              type: 'refresh'
+            })
+          )
+        }
       }
       //打开路由新窗口
       window.open(app.link + '?timestamp=' + Date.now(), app.windowName)
@@ -82,7 +93,11 @@ const DockItem = ({ app, mouseX }: DockItemProps) => {
         alt={app.title}
         title={app.title}
         draggable={false}
-        style={{ width, willChange: 'width' }}
+        style={{
+          width,
+          willChange: 'width',
+          transform: app.windowName === 'vscode' ? 'scale(1.1)' : 'scale(1)'
+        }}
       />
       <div className={`${styles['z-dock-item__hasOpen']} ${isOpen ? '' : styles['invisible']}`} />
     </li>

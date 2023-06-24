@@ -25,6 +25,7 @@ function RegisterPage() {
   const [count, setCount] = useState(60)
   const [passwordVisible, setPasswordVisible] = useState(false)
   useEffect(() => {
+    document.title = '忘记密码'
     let now = Date.now()
     let lastTime = getAuthCache(TIMER_KEY)
     if (lastTime && now - lastTime < 60000) {

@@ -25,6 +25,6 @@
       "@styles/*": ["./src/pages/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "./src/client/**/*.ts", "./src/server/**/*.ts"],
+  "include": ["next-env.d.ts", "./src/shared/**/*.ts", "./src/pages/**/*.ts", "./@types/**/*.d.ts"],
   "exclude": ["node_modules"] // 添加别名 , 在项目中即可使用 @components
 }

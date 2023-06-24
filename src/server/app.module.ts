@@ -14,6 +14,9 @@ import { JwtModule } from '@nestjs/jwt'
 import { JWT_SECRET } from '../shared/constants/env.ts'
 import { AuthService } from './modules/auth/auth.service.ts'
 import { ChatModule } from './modules/chat/chat.module.ts'
+import { OnlyofficeModule } from './modules/onlyoffice/onlyoffice.module'
+import { DocumentModule } from './modules/document/document.module'
+import { GlobalModule } from './modules/global/global.module.ts'
 
 @Module({
   imports: [
@@ -29,7 +32,10 @@ import { ChatModule } from './modules/chat/chat.module.ts'
       secret: JWT_SECRET
       // signOptions: { expiresIn: null } // e.g. 7d, 24h
     }),
-    ChatModule
+    ChatModule,
+    OnlyofficeModule,
+    DocumentModule,
+    GlobalModule
   ],
   providers: [
     {

@@ -21,7 +21,7 @@ export class NextService {
   ): Promise<void>
 
   public async render(page: string, arg2: any, arg3: any, arg4?: any): Promise<void> {
-    if (NextService.isIncomingMessage(arg2)) {
+    if (NextService.isIncomingMessage(arg2) && !arg4) {
       return await this.app.render(arg2, arg3, page)
     } else {
       return await this.app.render(arg3, arg4, page, arg2)

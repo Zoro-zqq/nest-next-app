@@ -1372,7 +1372,7 @@ const PICK_FORM_DATA: Record<string, any> = {
           field: 'MonitorSitePlace',
           label: '点位名称',
           required: true,
-          type: 'string',
+          type: 'lims-samplecode-cell',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
             fontSize: '12px',

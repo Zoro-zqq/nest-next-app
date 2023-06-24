@@ -17,6 +17,7 @@ import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrap
 import logger from 'redux-logger'
 import { axiosMiddleware } from '../utils/axiosMiddleware'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { NODE_ENV } from '../../shared/constants/env'
 
 const combinedReducers = combineReducers({
   [authSlice.name]: authSlice.reducer,
@@ -54,7 +55,7 @@ export const store: Store = configureStore({
       )
       .concat(axiosMiddleware)
       .concat(
-        process.env.NODE_ENV === `development`
+        NODE_ENV === `development`
           ? logger
           : () => next => action => {
               //自定义中间件作用：如果上面的判断不返回则会报错，所以返回了一个空的自定义中间件

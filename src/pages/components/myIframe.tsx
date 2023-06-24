@@ -6,8 +6,14 @@ interface Props {
 export default function LinkWeb({ src, title }: Props) {
   return (
     <>
-      <div className='w-full bg-[#272728] rounded-t-lg h-7'></div>
-      <iframe className='w-full h-full ' src={src} title={title} />
+      <div
+        style={{
+          backgroundColor: '#272728',
+          height: '28px'
+        }}
+        className='w-full'
+      ></div>
+      <iframe className='w-full h-full' src={src} title={title} />
     </>
   )
 }

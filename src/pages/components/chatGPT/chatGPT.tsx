@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Alert } from 'antd'
+import { NEXT_PUBLIC_OPENAI_API_KEY } from '../../../shared/constants/env'
 
 interface Message {
   text: string
@@ -40,7 +41,7 @@ const ChatGPT: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`
+          Authorization: `Bearer ${NEXT_PUBLIC_OPENAI_API_KEY}`
         },
         body: JSON.stringify({
           messages: [{ role: 'user', content: inputValue.trim() }],

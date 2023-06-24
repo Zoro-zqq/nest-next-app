@@ -35,7 +35,13 @@ function ScanLogin(props) {
     })
 
     // 每1秒询问一次服务器，用户App端是否扫码
-    timerCheck = setInterval(() => socket.emit('checkScanCode', base64QRcode.uuid), 1000)
+    timerCheck = setInterval(
+      () =>
+        socket.emit('checkScanCode', {
+          key: base64QRcode.uuid
+        }),
+      1000
+    )
   }
 
   const AgainScanCode = () => {
@@ -46,12 +52,12 @@ function ScanLogin(props) {
 
   useEffect(() => {
     // 创建 Socket 链接
-    const newSocket = import('socket.io-client').then(({ io }) => {
-      io(QRCODE_SOCKETURL, {
+    import('socket.io-client').then(({ io }) => {
+      const newSocket = io(QRCODE_SOCKETURL, {
         transports: ['websocket']
       })
+      setSocket(newSocket)
     })
-    setSocket(newSocket)
   }, [])
 
   useEffect(() => {

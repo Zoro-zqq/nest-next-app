@@ -57,7 +57,6 @@ export const refreshToken = createAsyncThunk('auth/refreshToken', async (params,
       refreshToken: re_token
     })
     if (res.token) {
-      console.log('??????????????/', res)
       const { token, ...userInfo } = res
       return {
         token: res.token,

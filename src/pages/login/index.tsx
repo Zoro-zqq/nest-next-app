@@ -32,6 +32,10 @@ const LoginPage = props => {
   const loginRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    document.title = '登录页'
+  }, [])
+
+  useEffect(() => {
     scene = new Scene()
     camera = new PerspectiveCamera(60, innerWidth / innerHeight, 1, 1000)
     camera.position.set(0, 4, 36)

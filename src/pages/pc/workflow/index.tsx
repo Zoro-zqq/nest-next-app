@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, Suspense, lazy } from 'react'
+import React, { useEffect, useCallback, useState, Suspense } from 'react'
 import useHandleTabClose from '../../hooks/handleTabClose.hook'
 import authGuard from '../../utils/authGuard'
 import {
@@ -10,15 +10,24 @@ import {
   InsertRowLeftOutlined,
   InsertRowRightOutlined
 } from '@ant-design/icons'
-import { Layout, Menu, Button, theme, Row, Col, Modal, Tooltip, Tabs, Empty, Card } from 'antd'
+import { Layout, Menu, Button, theme, Row, Col, Modal, Tooltip, Tabs, Card } from 'antd'
 import type { MenuProps } from 'antd'
 import styles from './scss/index.module.scss'
-import request from '../../utils/request'
 import { AppState, useAppDispatch } from '../../store/store'
-import { createNewCoop, getAllTask, setCurrentData } from '../../store/slice/coopSlice'
-import { useSelector, useDispatch } from 'react-redux'
+import { createNewCoop, getAllTask } from '../../store/slice/coopSlice'
+import { useSelector } from 'react-redux'
+import dynamic from 'next/dynamic'
 import Avatar from '../../components/avatar/Avatar'
-const WebForm = lazy(() => import('../../components/webfrom/index.tsx').then(mod => mod.default))
+// import WorkContent from '../../components/workflow/workContent'
+import TodoList from '../../components/workflow/todoList'
+import DoingList from '../../components/workflow/doingList'
+import DoneList from '../../components/workflow/doneList'
+
+const WorkContent = dynamic(
+  () => import('../../components/workflow/workContent.tsx').then(mod => mod.default),
+  { suspense: true }
+)
+
 type MenuItem = Required<MenuProps>['items'][number]
 const WINDOWS_NAME = 'custom'
 const { Header, Sider, Content } = Layout
@@ -60,137 +69,6 @@ const tabsItem = [
     children: <Comp />
   }
 })
-
-function GridItem({ data, type }) {
-  const { currentData } = useSelector((state: AppState) => state.coop)
-  const [isCurrent, setIsCurr] = useState(false)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    setIsCurr(currentData && data && currentData.CoopID === data.CoopID)
-  }, [currentData])
-  const selectCurr = useCallback(() => {
-    dispatch(
-      setCurrentData({
-        CoopID: data.CoopID,
-        type
-      })
-    )
-  }, [type])
-  return (
-    <Card
-      key={data.CoopID}
-      style={{ cursor: 'pointer', width: '90%', backgroundColor: isCurrent ? 'skyblue' : '#fff' }}
-      title={data.CoopInfo.Name}
-      bordered={false}
-      onClick={selectCurr}
-    >
-      <p>测试采样任务流程节点 {data.CoopInfo.WorkNode}</p>
-    </Card>
-  )
-}
-
-function TodoList() {
-  const { toDoList } = useSelector((state: AppState) => state.coop)
-  return toDoList.length ? (
-    <div className={styles['to-do']}>
-      {toDoList.map(data => {
-        return (
-          <Suspense key={data.CoopID} fallback={<>loading</>}>
-            <GridItem data={data} key={data.CoopID} type='todo' />
-          </Suspense>
-        )
-      })}
-    </div>
-  ) : (
-    <div style={{ minHeight: '50vh' }}>
-      <Empty style={{ marginTop: '20px' }} description={<span>暂无任务</span>} />
-    </div>
-  )
-}
-
-function DoingList() {
-  return <div>todo</div>
-}
-
-function DoneList() {
-  return <div>已办箱</div>
-}
-
-function WorkContent() {
-  const { currentData } = useSelector((state: AppState) => state.coop)
-  const [headBtn, setHeadBtn] = useState(null)
-
-  function sendNext() {}
-  function back() {}
-  function endCoop() {}
-  //注册所有公共自定义dom组件
-  useEffect(() => {
-    import('../../utils/defineCustomElements.ts').then(({ defineElements }) => {
-      defineElements()
-    })
-  }, [])
-  useEffect(() => {
-    if (!currentData) return
-    import(`../../settings/coop/${currentData.CoopType}.config`).then(res => {
-      const workNodes = res.default.workNodes
-      const index = workNodes.findIndex(node => node.nodeKey === currentData.WorkNode)
-      let btn
-      if (index === 0) {
-        btn = [
-          <Button type='primary' key='toNext' onClick={sendNext}>
-            发送到下一步
-          </Button>
-        ]
-      } else if (index === workNodes.length - 1) {
-        btn = [
-          <Button onClick={endCoop} key='end' type='primary'>
-            办结
-          </Button>
-        ]
-      } else {
-        btn = [
-          <Button key='back' onClick={back}>
-            退回
-          </Button>,
-          <Button style={{ marginLeft: '10px' }} type='primary' key='next' onClick={sendNext}>
-            发送到下一步
-          </Button>
-        ]
-      }
-      setHeadBtn(btn)
-    })
-  }, [currentData])
-  return currentData ? (
-    <div style={{ width: '100%', height: '100%', overflow: 'scroll' }}>
-      <Row style={{ padding: '10px' }}>
-        <Col span={20}></Col>
-        <Col span={4}>{headBtn || <></>}</Col>
-      </Row>
-      <Suspense fallback={<>加載中...</>}>
-        <WebForm
-          sheetId={currentData.CoopID}
-          sheet={currentData.CoopType === 'pickTask' ? 'pick' : 'task'}
-        />
-      </Suspense>
-    </div>
-  ) : (
-    <div
-      style={{
-        minHeight: '50vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <Empty
-        style={{ marginTop: '20px', fontSize: '24px' }}
-        image={Empty.PRESENTED_IMAGE_SIMPLE}
-        description={<span>选择任务箱任务</span>}
-      />
-    </div>
-  )
-}
-
 function Workflow() {
   //处理tab打开/关闭时
   useHandleTabClose(WINDOWS_NAME)
@@ -213,6 +91,8 @@ function Workflow() {
   }
 
   useEffect(() => {
+    document.title = '工作流'
+
     asyncDispatch(getAllTask())
   }, [])
 

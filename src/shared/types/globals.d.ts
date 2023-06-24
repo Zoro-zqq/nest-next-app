@@ -1,5 +1,7 @@
 import axios, { Axios, AxiosResponse, AxiosRequestConfig } from 'axios'
 
+export {}
+
 declare module '*.module.css' {
   const styles: { readonly [key: string]: string }
   export default styles
@@ -18,6 +20,12 @@ declare module 'axios' {
     error: any
   }
   export function create(config?: AxiosRequestConfig): AxiosInstance
+}
+
+declare global {
+  interface Window {
+    DocsAPI: any
+  }
 }
 
 declare type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<

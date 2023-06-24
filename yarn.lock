@@ -949,6 +949,11 @@
   resolved "https://registry.npmmirror.com/@neodrag/react/-/react-2.0.0.tgz#3f9b3ef815a21c8a7bca63e2b298db302fdd7e0b"
   integrity sha512-O0jFQQQywgCI98wC79+JONUIltWHSMNg58hXDehb290pLd81FUJvoDhEvdmNFCXO/6wWsfsUHYbumJM7zr9INA==
 
+"@nestjs/axios@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/@nestjs/axios/-/axios-3.0.0.tgz#a2e70b118e3058f3d4b9c3deacd496ec4e3ee69e"
+  integrity sha512-ULdH03jDWkS5dy9X69XbUVbhC+0pVnrRcj7bIK/ytTZ76w7CgvTZDJqsIyisg3kNOiljRW/4NIjSf3j6YGvl+g==
+
 "@nestjs/cache-manager@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmmirror.com/@nestjs/cache-manager/-/cache-manager-1.0.0.tgz#092b96fb6b083bdfc08cdf92230c514e8f6631d6"
@@ -1156,6 +1161,11 @@
     chalk "^4.1.0"
     consola "^2.15.0"
     node-fetch "^2.6.1"
+
+"@onlyoffice/document-editor-react@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.npmmirror.com/@onlyoffice/document-editor-react/-/document-editor-react-1.3.0.tgz#68db658a5405e03b1778296eb607e8aa93f1868a"
+  integrity sha512-TihZOkow+tCb87evJwecXzbQtmtIvnXURKGIp21zKWoFiwNivFsUiH7qIZeRM+LaWsIAIkfLEdIQiqFLqB60bw==
 
 "@prisma/client@^4.15.0":
   version "4.15.0"
@@ -7661,9 +7671,9 @@ three-mesh-bvh@^0.5.4:
   integrity sha512-VTIgfjz8aFoPKTQoMIQQv9jJD4ybFRZuKKE1/kqy78FQcuHQ0+iIWv7C5cSb2inlvs7bNMVY3yRx3RXGZfrvzQ==
 
 three-stdlib@^2.8.2:
-  version "2.23.9"
-  resolved "https://registry.npmmirror.com/three-stdlib/-/three-stdlib-2.23.9.tgz#09c74fc6acced3d124e4f9d695156136c587a355"
-  integrity sha512-fYBClVGQptD7UZcoRZGNlR3sKcUW37hVPoEW1v68E4XuiwD0Ml/VqDUJ0yEMVE2DlooDvqgqv/rIcHC/B4N5pg==
+  version "2.23.10"
+  resolved "https://registry.npmmirror.com/three-stdlib/-/three-stdlib-2.23.10.tgz#94907a558a00da327bd74308c92078fea72f77fc"
+  integrity sha512-y0DlxaN5HZXI9hKjEtqO2xlCEt7XyDCOMvD2M3JJFBmYjwbU+PbJ1n3Z+7Hr/6BeVGE6KZYcqPMnfKrTK5WTJg==
   dependencies:
     "@types/draco3d" "^1.4.0"
     "@types/offscreencanvas" "^2019.6.4"

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-// import type { DragOptions } from '@neodrag/react'
-// import { useDraggable } from '@neodrag/react'
+import type { DragOptions } from '@neodrag/react'
+import { useDraggable } from '@neodrag/react'
 import { useLocalStorageState } from 'ahooks'
 import { motion } from 'framer-motion'
 import type { AppsData } from '../../settings/config'
@@ -53,10 +53,15 @@ const Window = ({ app, children }: WindowProps) => {
   }
 
   useEffect(() => {
-    setBox({
-      width: max ? winWidth : Math.min(winWidth, app.width ? app.width : 540),
-      height: max ? winHeight : Math.min(winHeight, app.height ? app.height : 450)
-    })
+    if (app.windowName !== 'sheet') {
+      setBox({
+        width: max ? winWidth : Math.min(winWidth, app.width ? app.width : 540),
+        height: max ? winHeight : Math.min(winHeight, app.height ? app.height : 450)
+      })
+    } else {
+      handleMax()
+    }
+
     dispatch(
       setFocus({
         windowName: app.windowName
@@ -67,7 +72,7 @@ const Window = ({ app, children }: WindowProps) => {
   const draggableRef = useRef(null)
 
   // init dragable
-  const options = {
+  const options: DragOptions = {
     position,
     onDrag: ({ offsetX, offsetY }) =>
       setPosition({ x: isRotate ? offsetY : offsetX, y: isRotate ? offsetX : offsetY }),
@@ -76,11 +81,7 @@ const Window = ({ app, children }: WindowProps) => {
     cancel: '.traffic-lights',
     disabled: !!max
   }
-
-  import('@neodrag/react').then(({ useDraggable }) => {
-    useDraggable(draggableRef, options)
-  })
-
+  useDraggable(draggableRef, options)
   return (
     <motion.div
       ref={draggableRef}

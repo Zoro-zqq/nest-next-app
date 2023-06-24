@@ -33,6 +33,8 @@ const PcIndex: React.FC & {
     [toggle]
   )
   useEffect(() => {
+    document.title = '首页'
+
     setTimeout(() => {
       setScale(1)
       setRotate(45)

@@ -6,7 +6,7 @@ const TASK_FORM_DATA: Record<string, any> = {
   },
   cells: {
     C2: {
-      text: '广州华鑫检测技术有限公司',
+      text: 'xxx任务单',
       style: {
         fontFamily: "'宋体', SimSun, Serif",
         fontSize: '27px',
@@ -889,7 +889,7 @@ const TASK_FORM_DATA: Record<string, any> = {
       }
     },
     B38: {
-      text: '1.对检测结果若有异议，应于收到我方报告之日起十个工作日内提出书面意见，逾期不予受理。',
+      text: '1.xxxxxxxxxxxxxxxx',
       style: {
         fontFamily: "'宋体', SimSun, Serif",
         fontSize: '12px',
@@ -909,7 +909,7 @@ const TASK_FORM_DATA: Record<string, any> = {
       }
     },
     B39: {
-      text: '2.属于委托方送样检验检测的，检测报告仅对来样检验检测项目负责。',
+      text: '2.xxxxxxxxxxxx',
       style: {
         fontFamily: "'宋体', SimSun, Serif",
         fontSize: '12px',
@@ -929,7 +929,7 @@ const TASK_FORM_DATA: Record<string, any> = {
       }
     },
     B40: {
-      text: '3.为支持检测工作的公平、公正、准确、高效，欢迎客户对采样工作的监督，如有异议请致电：020-32200580',
+      text: '3.xxxxxxxxxxxxx',
       style: {
         fontFamily: "'宋体', SimSun, Serif",
         fontSize: '12px',
@@ -1136,7 +1136,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         D15: {
           field: 'InspectTypeName',
-          type: 'lims-inspecttypepick-cell',
+          type: 'string',
           required: true,
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1167,7 +1167,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         G15: {
           field: 'AnalysisItems',
-          type: 'lims-analysisitempick-cell',
+          type: 'string',
           required: true,
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1183,7 +1183,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         H15: {
           field: 'F_InspectfreqJSON',
-          type: 'lims-inspectfrequency-cell',
+          type: 'string',
           required: true,
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1206,7 +1206,7 @@ const TASK_FORM_DATA: Record<string, any> = {
       bind: {
         A2: {
           field: 'LOGO',
-          type: 'image',
+          type: 'string',
           default: '/lims/Static/LOGO_HuaXin.jpg',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1219,7 +1219,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         I3: {
           field: 'ProjectCode',
-          type: 'projectcode-cell',
+          type: 'string',
           required: true,
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1235,7 +1235,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         I4: {
           field: 'ProjectDate',
-          type: 'datetime',
+          type: 'string',
           options: {
             fmt: 'YYYY年MM月DD日'
           },
@@ -1253,7 +1253,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         I5: {
           field: 'overdate',
-          type: 'datetime',
+          type: 'string',
           options: {
             fmt: 'YYYY年MM月DD日'
           },
@@ -1271,7 +1271,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         I6: {
           field: 'documentary',
-          type: 'lims-selectuser-cell',
+          type: 'string',
           options: {
             roleKey: ['salesperson']
           },
@@ -1303,7 +1303,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         C8: {
           field: 'F_EntrustUnitJSON',
-          type: 'lims-selectunit-cell',
+          type: 'string',
           required: true,
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1365,7 +1365,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         C11: {
           field: 'F_InspectUnitJSON',
-          type: 'lims-selectunit-cell',
+          type: 'string',
           required: true,
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1426,7 +1426,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         C20: {
           field: 'Type',
           label: '检测目的',
-          type: 'select',
+          type: 'string',
           required: true,
           options: '$userdata.projectTypes',
           style: {
@@ -1442,7 +1442,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         C21: {
           field: 'leader',
-          type: 'lims-selectuser-cell',
+          type: 'string',
           options: {
             roleKey: ['pickA', 'pickB', 'pickC', 'pickD', 'pickE', 'pickF']
           },
@@ -1459,7 +1459,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         H21: {
           field: 'Member',
-          type: 'lims-selectuser-cell',
+          type: 'string',
           options: {
             roleKey: ['pickA', 'pickB', 'pickC', 'pickD', 'pickE', 'pickF'],
             multiple: true
@@ -1506,7 +1506,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         D23: {
           field: 'Urgent',
-          type: 'select',
+          type: 'string',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
             fontSize: '12px',
@@ -1521,7 +1521,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         F23: {
           field: 'ProjectCycle',
-          type: 'select',
+          type: 'string',
           options: '$userdata.workCycle',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
@@ -1535,7 +1535,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         H23: {
           field: 'ProjectCycleCalendar',
-          type: 'number',
+          type: 'string',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
             fontSize: '12px',
@@ -1663,7 +1663,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         C30: {
           field: 'AnaMethodAccord',
-          type: 'lims-basismethod2-cell',
+          type: 'string',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
             fontSize: '12px',
@@ -1677,7 +1677,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         C31: {
           field: 'Standard',
-          type: 'dischargestandard-cell',
+          type: 'string',
           style: {
             fontFamily: "'宋体', SimSun, Serif",
             fontSize: '12px',
@@ -1747,7 +1747,7 @@ const TASK_FORM_DATA: Record<string, any> = {
         },
         G36: {
           field: 'sDate',
-          type: 'datetime',
+          type: 'string',
           options: {
             fmt: 'MM月DD日'
           },

@@ -22,7 +22,9 @@ export const appSlice = createSlice({
           break
         //不改变缓存
         case 'open':
-          state.openApps = state.openApps.concat(windowName)
+          if (!state.openApps.includes(windowName)) {
+            state.openApps = state.openApps.concat(windowName)
+          }
           break
         //不改变缓存
         case 'close':

@@ -135,6 +135,8 @@ function WebForm(props) {
           console.error('customElements load', e)
         }
       }
+      console.log(areaDict, '?????')
+
       setLoaded(true)
     }
 
@@ -149,7 +151,12 @@ function WebForm(props) {
 
   return (
     tplData && (
-      <div className={styles['sheet-container']}>
+      <div
+        style={{
+          backgroundColor: props.bg ? props.bg : '#fff'
+        }}
+        className={styles['sheet-container']}
+      >
         <div className={styles['sheet-content']}>
           <div className={styles['sheet-header']}>
             <DownloadOutlined className={styles['header-btn']} />
@@ -157,7 +164,7 @@ function WebForm(props) {
           <div className={styles['sheet-wrapper']}>
             <div className={styles['sheet-table-div']}>
               <div className={styles['sheet-table-body']}>
-                {loaded ? (
+                {loaded && areaDict ? (
                   <SheetForm Opts={areaDict.form} sheetId={props.sheetId}>
                     {Object.entries(sheetBindTables).map((value, index) => {
                       const [tablename = 'table', table] = value

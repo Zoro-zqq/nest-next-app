@@ -14,6 +14,7 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 // import { JwtAuthGuard } from './guard/jwt-auth.guard'
 import { join } from 'path'
 // import { readFileSync } from 'fs'
+import { APP_ONLYOFFICE_SERVER } from '../../src/shared/constants/env.ts'
 
 async function bootstrap() {
   // const httpsOptions = {
@@ -29,6 +30,10 @@ async function bootstrap() {
   app.use(urlencoded({ extended: true })) // For parsing application/x-www-form-urlencoded
   //
   app.useStaticAssets(join(__dirname, '../../public'))
+  //允许office服务跨域
+  app.enableCors({
+    origin: APP_ONLYOFFICE_SERVER
+  })
   //session
   app.use(
     session({

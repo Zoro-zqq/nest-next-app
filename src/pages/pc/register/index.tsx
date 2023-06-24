@@ -24,8 +24,9 @@ function RegisterPage() {
   })
   const [captcha, setCaptcha] = useState(null)
   const [passwordVisible, setPasswordVisible] = useState(false)
-
   useEffect(() => {
+    document.title = '注册页'
+
     changeCap()
   }, [])
 
@@ -45,14 +46,16 @@ function RegisterPage() {
     //验证
     if (handleValidator()) {
       try {
-        await request.post('/user/register', formData)
-        messageApi.open({
-          type: 'success',
-          content: '注册快成功了！清注意查收邮件完成注册！！！'
-        })
-        setTimeout(() => {
-          router.push('/pc/login')
-        }, 1000)
+        let res: any = await request.post('/user/register', formData)
+        if (!res.requestFail) {
+          messageApi.open({
+            type: 'success',
+            content: '注册快成功了！清注意查收邮件完成注册！！！'
+          })
+          setTimeout(() => {
+            router.push('/pc/login')
+          }, 1000)
+        }
       } catch (e) {
         console.error(e)
       }
