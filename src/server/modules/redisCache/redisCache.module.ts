@@ -16,12 +16,8 @@ import { join } from 'path'
           host: REDIS_CONFIG.host,
           port: REDIS_CONFIG.port,
           db: REDIS_CONFIG.db, //目标库,
-          ttl: REDIS_CONFIG.ttl,
-          auth_pass: REDIS_CONFIG.password, // 密码,没有可以不写
-          tls: {
-            key: readFileSync(join(__dirname, './secerts/zorq.top.key')),
-            cert: readFileSync(join(__dirname, './secerts/zorq.top.pem'))
-          }
+          ttl: REDIS_CONFIG.ttl
+          // auth_pass: REDIS_CONFIG.password, // 密码,没有可以不写
         }
       }
     })

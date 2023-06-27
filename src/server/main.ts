@@ -13,19 +13,11 @@ import session from 'express-session'
 import { NestExpressApplication } from '@nestjs/platform-express'
 // import { JwtAuthGuard } from './guard/jwt-auth.guard'
 import { join } from 'path'
-import { readFileSync } from 'fs'
+// import { readFileSync } from 'fs'
 import { APP_ONLYOFFICE_SERVER } from '../../src/shared/constants/env.ts'
 
 async function bootstrap() {
-  const httpsOptions = {
-    key: readFileSync(join(__dirname, './secerts/zorq.top.key')),
-    cert: readFileSync(join(__dirname, './secerts/zorq.top.pem'))
-  }
-
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    httpsOptions
-  })
-  // const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.use(json()) // For parsing application/json
   app.use(urlencoded({ extended: true })) // For parsing application/x-www-form-urlencoded
   //

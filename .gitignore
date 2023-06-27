@@ -35,10 +35,7 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 .next/*
-.env
 /src/server/config/config*
-/src/shared/constants/env*
 src/server/secerts/9547427_zorq.top.pem
 src/server/secerts/9547427_zorq.top.key
 .env.prod
-.env.local
