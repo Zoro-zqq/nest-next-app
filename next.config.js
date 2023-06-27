@@ -13,8 +13,12 @@ const nextConfig = {
     styledComponents: true
   },
   typescript: {
-    tsconfigPath: './tsconfig.next.json'
-  }
+    tsconfigPath: './tsconfig.next.json',
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true
+  },
+  pageExtensions: ['page.tsx']
 }
 
 module.exports = nextConfig

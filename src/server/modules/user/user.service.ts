@@ -92,7 +92,7 @@ export class UserService {
     })
     if (userInfo) {
       //注册成功
-      return await this.prismaService.user.update({
+      await this.prismaService.user.update({
         where: {
           email
         },
@@ -101,6 +101,7 @@ export class UserService {
           status: 1
         }
       })
+      return '注册成功'
     } else {
       throw new BadRequestException('用户不存在')
     }

@@ -1,25 +1,20 @@
-import { GetServerSideProps } from 'next'
-import authGuard from '../utils/authGuard'
-import Dock from '../components/dock/dock'
+import Dock from '../components/dock/dock.tsx'
 import { useEffect, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import styles from './index.module.scss'
 import { useSelector } from 'react-redux'
-import { AppState } from '../store/store'
-import { colorDict, titleDict } from '../settings/config'
-import Avatar from '../components/avatar/Avatar'
-import WordCloud from '../components/cloud/wordCloud'
+import { AppState } from '../store/store.ts'
+import { colorDict, titleDict } from '../settings/config.tsx'
+import Avatar from '../components/avatar/Avatar.tsx'
+import WordCloud from '../components/cloud/wordCloud.tsx'
 import { useSpring } from '@react-spring/core'
-import Scene from '../components/ball'
+import Scene from '../components/ball/index.tsx'
 import dynamic from 'next/dynamic'
-
 const Desktop = dynamic(() =>
   import('../components/windows/UseWindow.tsx').then(mod => mod.default)
 )
 
-const PcIndex: React.FC & {
-  getInitialProps: GetServerSideProps
-} = () => {
+export default function PcModule() {
   const [rotate, setRotate] = useState(0)
   const [scale, setScale] = useState(0)
   const [boxText, setBoxText] = useState('点击下方选项栏图标打开对应功能页面')
@@ -70,22 +65,24 @@ const PcIndex: React.FC & {
       {/* 左边小球切换 */}
       <div
         style={{
-          width: '50vw',
-          height: '50vh',
+          width: '960px',
+          height: '540px',
           position: 'absolute',
-          bottom: '-10%',
-          left: '-10%',
+          bottom: '-106px',
+          left: '-196px',
           transform: 'scale(0.8)',
           zIndex: 999
         }}
       >
-        <Scene x={x} set={setToggle} />
+        <Suspense fallback={<>小球加载中...</>}>
+          <Scene x={x} set={setToggle} />
+        </Suspense>
       </div>
       {/* 背景颜色提示 */}
       <p
         style={{
-          left: '12%',
-          bottom: '10%',
+          left: '156px',
+          bottom: '150px',
           color: '#fff',
           width: '50px',
           transform: 'translate3d(-48%, -62%, 0) rotate3d(1, 0, 0, 55deg) rotate3d(0, 0, 1, 48deg)'
@@ -95,7 +92,7 @@ const PcIndex: React.FC & {
         亮
       </p>
       <p
-        style={{ left: '18%', bottom: '5%', color: '#000', width: '50px' }}
+        style={{ left: '268px', bottom: '98px', color: '#000', width: '50px' }}
         className={`${styles['z-home__tips']}`}
       >
         暗
@@ -111,15 +108,11 @@ const PcIndex: React.FC & {
 
       {/* 右边部分 */}
       {/* 右边固定头像 */}
-      <Suspense fallback={<></>}>
-        <div className={`${styles['z-home__avater']}`}>
-          <Avatar backgroundColor={backgroundColor} />
-        </div>
-      </Suspense>
+      <div className={`${styles['z-home__avater']}`}>
+        <Avatar backgroundColor={backgroundColor} />
+      </div>
       {/* 底部固定任务栏 */}
-      <Suspense fallback={<></>}>
-        <Dock />
-      </Suspense>
+      <Dock />
       {/* 提示点击词云 */}
       <motion.div
         className={`${styles['z-home__row']}`}
@@ -139,7 +132,9 @@ const PcIndex: React.FC & {
           zIndex: 999
         }}
       >
-        <WordCloud />
+        <Suspense fallback={<>词云加载中...</>}>
+          <WordCloud />
+        </Suspense>
       </div>
       {/* 右下角文本 */}
       <motion.div
@@ -152,14 +147,7 @@ const PcIndex: React.FC & {
       </motion.div>
 
       {/* 彈窗 */}
-      <Suspense fallback={<></>}>
-        <Desktop />
-      </Suspense>
+      <Desktop />
     </motion.div>
   )
 }
-
-export default PcIndex
-
-//路由守卫
-PcIndex.getInitialProps = authGuard()

@@ -8,8 +8,7 @@ type Props = {
   readonly role?: 0
   readonly customText?: React.ReactNode
 }
-
-export const AuthGuard: React.FC<Props> = ({ children, role, customText }) => {
+const AuthGuard: React.FC<Props> = ({ children, role, customText }) => {
   const { userInfo, isLogin } = useSelector((state: OurStore) => state.auth)
 
   // Without role allow all authorized users
@@ -30,5 +29,5 @@ export const AuthGuard: React.FC<Props> = ({ children, role, customText }) => {
     </section>
   )
 }
-
+export default AuthGuard
 /* React.FC<Props>  */

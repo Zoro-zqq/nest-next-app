@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState, Suspense } from 'react'
-import useHandleTabClose from '../../hooks/handleTabClose.hook'
-import authGuard from '../../utils/authGuard'
+import useHandleTabClose from '../../hooks/handleTabClose.hook.ts'
+import authGuard from '../../utils/authGuard.ts'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -13,15 +13,15 @@ import {
 import { Layout, Menu, Button, theme, Row, Col, Modal, Tooltip, Tabs, Card } from 'antd'
 import type { MenuProps } from 'antd'
 import styles from './scss/index.module.scss'
-import { AppState, useAppDispatch } from '../../store/store'
-import { createNewCoop, getAllTask } from '../../store/slice/coopSlice'
+import { AppState, useAppDispatch } from '../../store/store.ts'
+import { createNewCoop, getAllTask } from '../../store/slice/coopSlice.ts'
 import { useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
-import Avatar from '../../components/avatar/Avatar'
+import Avatar from '../../components/avatar/Avatar.tsx'
 // import WorkContent from '../../components/workflow/workContent'
-import TodoList from '../../components/workflow/todoList'
-import DoingList from '../../components/workflow/doingList'
-import DoneList from '../../components/workflow/doneList'
+import TodoList from '../../components/workflow/todoList.tsx'
+import DoingList from '../../components/workflow/doingList.tsx'
+import DoneList from '../../components/workflow/doneList.tsx'
 
 const WorkContent = dynamic(
   () => import('../../components/workflow/workContent.tsx').then(mod => mod.default),

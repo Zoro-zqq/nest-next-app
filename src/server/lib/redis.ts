@@ -1,8 +1,6 @@
 import { Redis, Command } from 'ioredis'
 import { REDIS_CONFIG } from '../../shared/constants/env.ts'
 import { Socket } from 'socket.io'
-// import { readFileSync } from 'fs'
-// import { join } from 'path'
 
 export type RedisClient = Redis
 
@@ -37,10 +35,6 @@ export class redisService {
     return new Redis({
       ...REDIS_CONFIG,
       db
-      // tls: {
-      //   key: readFileSync(join(__dirname, '../secrets/9547427_zorq.top.key')),
-      //   cert: readFileSync(join(__dirname, '../secrets/9547427_zorq.top.pem'))
-      // }
     })
   }
 

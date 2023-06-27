@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import type { DragOptions } from '@neodrag/react'
-import { useDraggable } from '@neodrag/react'
+// import { useDraggable } from '@neodrag/react'
 import { useLocalStorageState } from 'ahooks'
 import { motion } from 'framer-motion'
 import type { AppsData } from '../../settings/config'
@@ -9,13 +8,15 @@ import { setMax, setFocus, setMinimizeApps } from '../../store/slice/appSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState } from '../../store/store'
 import useWindowSize from '../../hooks/useWindowSize'
-
+let useDraggable
+import('@neodrag/react').then(res => (useDraggable = res.useDraggable))
 interface WindowProps {
   app: AppsData
   children: React.ReactNode
 }
 
 const Window = ({ app, children }: WindowProps) => {
+  if (!useDraggable) return
   const { winWidth, winHeight } = useWindowSize()
   const { max, focusApp, minimizeApps } = useSelector((state: AppState) => state.app)
   const dispatch = useDispatch()
@@ -72,7 +73,7 @@ const Window = ({ app, children }: WindowProps) => {
   const draggableRef = useRef(null)
 
   // init dragable
-  const options: DragOptions = {
+  const options = {
     position,
     onDrag: ({ offsetX, offsetY }) =>
       setPosition({ x: isRotate ? offsetY : offsetX, y: isRotate ? offsetX : offsetY }),

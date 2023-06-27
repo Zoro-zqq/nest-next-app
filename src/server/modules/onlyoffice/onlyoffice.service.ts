@@ -23,7 +23,7 @@ export class OnlyofficeService {
           responseType: 'stream'
         })
         const stream: WriteStream = createWriteStream(
-          join(__dirname, '../../../../public/assets/word', body.key)
+          join(__dirname, '../public/assets/word', body.key)
         )
         file.data.pipe(stream)
       } catch (error) {

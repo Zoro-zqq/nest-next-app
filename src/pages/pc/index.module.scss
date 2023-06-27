@@ -91,7 +91,7 @@
   }
 
   @include e(technology) {
-    bottom: 3%;
+    bottom: 80px;
     right: 60px;
     top: auto;
     transform: translate3d(20%, 270%, 0) rotate3d(32, 24, 30, -70deg);
@@ -100,8 +100,8 @@
   @include e(tips) {
     display: inline-block;
     position: absolute;
-    left: 22%;
-    bottom: 12%;
+    left: 336px;
+    bottom: 168px;
     transform: translate3d(-50%, -50%, 0) rotate3d(1, 0, 0, 55deg) rotate3d(0, 0, 1, 45deg);
     font-weight: 800;
     font-size: 40px;

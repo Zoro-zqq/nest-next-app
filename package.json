@@ -1,20 +1,21 @@
 {
   "name": "nest-next-app",
   "version": "0.0.1",
-  "description": "",
+  "description": "nest-next-app",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "repository": "https://github.com/Zoro-zqq/nest-next-app.git",
+  "license": "MIT",
   "scripts": {
     "build": "yarn build:next && yarn build:nest",
-    "build:next": "next build --path ./tsconfig.next.json",
-    "build:nest": "nest build --path ./tsconfig.server.json",
+    "build:next": "next build",
+    "build:nest": "nest build --path ./tsconfig.server.json --webpack --webpackPath=./webpack.config.js",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
     "dev": "cross-env ts-node-dev --project tsconfig.server.json --ignore-watch .next --cls src/server/main.ts",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "start": "cross-env NODE_ENV=production node dist/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prepare": "husky install",
     "eslint": "eslint --max-warnings=0",
@@ -62,6 +63,7 @@
     "cache-manager-redis-store": "^3.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "clean-webpack-plugin": "^4.0.0",
     "express-session": "^1.17.3",
     "framer-motion": "^10.12.16",
     "handsontable": "^12.4.0",
@@ -88,7 +90,7 @@
     "rxjs": "^7.2.0",
     "socket.io-client": "^4.6.2",
     "stacktrace-js": "^2.0.2",
-    "three": "0.151.3"
+    "three": "0.139.2"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
@@ -115,6 +117,7 @@
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
     "husky": "7.0.1",
     "jest": "29.5.0",
     "lint-staged": "12.5.0",
@@ -135,7 +138,8 @@
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "4.2.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "webpack": "5.11.0"
   },
   "config": {
     "commitizen": {

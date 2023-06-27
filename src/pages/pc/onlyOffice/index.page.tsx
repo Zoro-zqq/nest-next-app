@@ -3,7 +3,7 @@ import useHandleTabClose from '../../hooks/handleTabClose.hook'
 import { Button, Skeleton } from 'antd'
 import axios from '../../utils/request'
 import { DocumentEditor } from '@onlyoffice/document-editor-react'
-import { APP_DOCUMENT_SERVER, APP_ONLYOFFICE_SERVER } from '../../../shared/constants/env'
+import { APP_DOCUMENT_SERVER } from '../../../shared/constants/env'
 
 const WINDOWS_NAME = 'office'
 // 编辑器配置项，完整配置项参见：https://api.onlyoffice.com/editors/config/
@@ -113,13 +113,13 @@ function OnlyOffice() {
           id='onlyOffice'
           width='100%'
           height='100%'
-          documentServerUrl={APP_ONLYOFFICE_SERVER}
+          documentServerUrl='https://8.142.84.187:2800/'
           config={{
             document: {
               fileType: 'docx',
-              key: `test1.docx`,
+              key: `test.docx`,
               title: '测试文档一.docx',
-              url: `${APP_DOCUMENT_SERVER}/assets/word/test1.docx`,
+              url: `https://8.142.84.187/assets/word/test.docx`,
               // 权限
               permissions: {
                 // 启用评论
@@ -134,10 +134,12 @@ function OnlyOffice() {
                 review: true
               }
             },
+            token:
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiem9ycSJ9.NVGdBwXeBG3cLjBi8-L3FWA_-Zz2UINgcHqqbcKvukY',
             documentType: 'word',
             editorConfig: {
               // 回调地址
-              callbackUrl: `${APP_DOCUMENT_SERVER}/api/onlyoffice/callback`,
+              callbackUrl: `https://8.142.84.187/api/onlyoffice/callback`,
               // 设置语言
               lang: 'zh-CN',
               customization: {

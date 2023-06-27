@@ -10,7 +10,7 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -18,13 +18,8 @@
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@components/*": ["./src/pages/components/*"],
-      "@utils/*": ["./src/pages/utils/*"],
-      "@styles/*": ["./src/pages/styles/*"]
-    }
+    ]
   },
-  "include": ["next-env.d.ts", "./src/shared/**/*.ts", "./src/pages/**/*.ts", "./@types/**/*.d.ts"],
-  "exclude": ["node_modules"] // 添加别名 , 在项目中即可使用 @components
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

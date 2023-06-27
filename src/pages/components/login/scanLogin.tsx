@@ -16,6 +16,9 @@ function ScanLogin(props) {
   const [socket, setSocket] = useState(null)
 
   const getQRcode = () => {
+    if (timerCheck) {
+      clearInterval(timerCheck)
+    }
     // 向服务器要uuid和二维码
     socket.emit('getQRcode')
     // 接受服务器给的uuid和二维码
@@ -111,7 +114,7 @@ function ScanLogin(props) {
       <div
         className={`iconfont icon-login ${styles['module-switch-login']}`}
         onClick={() => {
-          props.setLoginIdentity(!props.loginIdentity)
+          props.setLoginIdentity(false)
         }}
       >
         <Transition.CSSTransition in={props.loginIdentity} timeout={800} classNames='fade'>

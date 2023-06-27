@@ -1,10 +1,16 @@
 import CellInput from './cellInput'
-import SheetCheckbox from '../settings/sheetCells/checkbox'
+import WebSheetCheckBoxJSX from '../settings/sheetCells/checkbox'
 export function defineElements() {
   if (!customElements.get('sheet-cell-input')) {
-    customElements.define('sheet-cell-input', CellInput)
+    let sheetCellInput = CellInput()
+    if (sheetCellInput) {
+      customElements.define('sheet-cell-input', sheetCellInput)
+    }
   }
   if (!customElements.get('sheet-checkbox')) {
-    customElements.define('sheet-checkbox', SheetCheckbox)
+    let SheetCheckbox = WebSheetCheckBoxJSX()
+    if (SheetCheckbox) {
+      customElements.define('sheet-checkbox', SheetCheckbox)
+    }
   }
 }

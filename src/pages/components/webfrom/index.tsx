@@ -128,7 +128,10 @@ function WebForm(props) {
             } else {
               //注册WebComponent
               console.log(`%c[register:${webCompName}]`, 'color:green')
-              customElements.define(webCompName, webComponent)
+              let customWebComponent = webComponent()
+              if (customWebComponent) {
+                customElements.define(webCompName, customWebComponent)
+              }
             }
           }
         } catch (e) {

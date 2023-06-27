@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './scss/table.module.scss'
-import Handsontable from 'handsontable'
-import { registerLanguageDictionary, zhCN } from 'handsontable/i18n'
-import { registerAllModules } from 'handsontable/registry'
-import { TextEditor } from 'handsontable/editors/textEditor'
+// import Handsontable from 'handsontable'
+// import { registerLanguageDictionary, zhCN } from 'handsontable/i18n'
+// import { TextEditor } from 'handsontable/editors/textEditor'
 import 'handsontable/dist/handsontable.full.min.css'
 import { cloneDeep, pick } from 'lodash'
 import { setSheetDict } from '../../store/slice/sheetSlice'
@@ -56,35 +55,6 @@ function localSetTableData(
 
 let globalHot: any
 
-//register Handsontable's language
-registerLanguageDictionary(zhCN)
-// register Handsontable's modules
-// registerAllModules()
-
-class CustomEditor extends TextEditor {
-  createElements() {
-    super.createElements()
-  }
-  close() {
-    TextEditor.prototype.close.apply(this, arguments)
-  }
-  beginEditing() {
-    if (
-      this.cellProperties &&
-      this.cellProperties.cellThis &&
-      this.cellProperties.cellThis.startEdit
-    ) {
-      if (this.cellProperties.cellThis.startEdit(this)) {
-        TextEditor.prototype.beginEditing.apply(this, arguments)
-        return
-      }
-      globalHot.deselectCell()
-    } else {
-      TextEditor.prototype.beginEditing.apply(this, arguments)
-    }
-  }
-}
-
 const hotSettings: GridSettings = {
   data: [],
   language: 'zh-CN',
@@ -101,6 +71,39 @@ const hotSettings: GridSettings = {
 }
 
 function SheetTable({ Opts, sheetId, heightsArray, tdObj = { realHeight: 500 } }) {
+  if (typeof window == 'undefined') return <></>
+  const Handsontable = require('handsontable').default
+  //register Handsontable's language
+  const { registerLanguageDictionary, zhCN } = require('handsontable/i18n')
+  const { TextEditor } = require('handsontable/editors/textEditor')
+  registerLanguageDictionary(zhCN)
+  // register Handsontable's modules
+  // registerAllModules()
+
+  class CustomEditor extends TextEditor {
+    createElements() {
+      super.createElements()
+    }
+    close() {
+      TextEditor.prototype.close.apply(this, arguments)
+    }
+    beginEditing() {
+      if (
+        this.cellProperties &&
+        this.cellProperties.cellThis &&
+        this.cellProperties.cellThis.startEdit
+      ) {
+        if (this.cellProperties.cellThis.startEdit(this)) {
+          TextEditor.prototype.beginEditing.apply(this, arguments)
+          return
+        }
+        globalHot.deselectCell()
+      } else {
+        TextEditor.prototype.beginEditing.apply(this, arguments)
+      }
+    }
+  }
+
   const hotTableComponent = useRef(null)
   const { sheetDict } = useSelector((state: AppState) => state.sheet)
   const dispatch = useDispatch()
@@ -235,13 +238,13 @@ function SheetTable({ Opts, sheetId, heightsArray, tdObj = { realHeight: 500 } }
       ;(hotSettings.columns as Array<any>).push({
         data: field,
         renderer: function (
-          instance: Handsontable.Core,
+          instance: any,
           td: HTMLTableCellElement,
           row: number,
           col: number,
           prop: string | number,
           value: any,
-          cellProperties: Handsontable.CellProperties
+          cellProperties: any
         ) {
           if (cellProperties) {
             if (cellProperties.row == row && cellProperties.renderOk) {

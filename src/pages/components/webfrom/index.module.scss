@@ -9,12 +9,11 @@
   //overflow: auto;
   z-index: 1;
 
-  &>.sheet-content {
+  & > .sheet-content {
     position: relative;
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
-
 
     &:hover {
       .sheet-header {
@@ -22,7 +21,7 @@
       }
     }
 
-    &>.sheet-header {
+    & > .sheet-header {
       top: 16px;
       left: 50%;
       -webkit-transform: translateX(-50%);
@@ -46,20 +45,20 @@
         }
       }
 
-      &>.header-btn {
+      & > .header-btn {
         font-size: 20px;
         width: 32px;
       }
     }
 
-    &>.sheet-wrapper {
+    & > .sheet-wrapper {
       height: 100%;
       position: relative;
       display: -webkit-box;
       display: -moz-box;
 
       //overflow: scroll;
-      &>.sheet-table-div {
+      & > .sheet-table-div {
         background-color: #fff;
 
         padding: 8px;
@@ -68,7 +67,7 @@
         transform-origin: left top;
         margin: 0 auto;
 
-        &>.sheet-table-body {
+        & > .sheet-table-body {
           padding: 8px;
           -webkit-box-shadow: 0 0 9px 3px #999;
           box-shadow: 0 0 9px 3px #999;
@@ -83,7 +82,7 @@
     .ant-tabs-content-holder {
       overflow: scroll;
     }
-    .ant-tabs-tab-btn{
+    .ant-tabs-tab-btn {
       color: #fff;
     }
   }

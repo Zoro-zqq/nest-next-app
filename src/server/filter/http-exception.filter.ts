@@ -33,6 +33,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       error: 'Bad Request',
       message
     }
+    if (code == 404 || status == 404) {
+      return response.status(status).redirect('https://zorq.top/404.html')
+    }
     // 设置返回的状态码、请求头、发送错误信息
     response.status(status).json(errorResponse)
   }

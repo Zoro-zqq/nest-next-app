@@ -16,7 +16,7 @@ export class NextModule {
     const app = next(
       Object.assign(
         {
-          dev: process.env.NODE_ENV !== 'production',
+          dev: false,
           dir: process.cwd()
         },
         options

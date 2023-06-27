@@ -5,7 +5,7 @@
  */
 
 import Axios from 'axios' // 引入axios
-import { PROJECT_DOMAIN, PORT } from '../../shared/constants/env'
+import { PROJECT_DOMAIN } from '../../shared/constants/env'
 import { message as AntdMessage, Spin } from 'antd' // 引入antd
 import router from 'next/router'
 import { createRoot } from 'react-dom/client'
@@ -27,7 +27,7 @@ let root
 // 创建axios实例对象， 添加全局配置
 const axios = Axios.create({
   // 初始配置请求头  请求api
-  baseURL: `${PROJECT_DOMAIN}:${PORT}/api`,
+  baseURL: `${PROJECT_DOMAIN}/api`,
   // 接口持续时间为8秒，否则超时
   timeout: 8000
 })
